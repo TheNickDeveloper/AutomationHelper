@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using AutomationHelper.Models;
+using AutomationHelper.Services;
+using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace AutomationHelper.ViewModels
 {
@@ -12,12 +12,27 @@ namespace AutomationHelper.ViewModels
         private DateTime _startDateTime = DateTime.Now;
         private DateTime _endDateTime = DateTime.Now;
         private string _excuteStatus;
-
         private string _password;
+        private string _exportDataPath;
+        private readonly PathBrowseHelper _pathBrowseHelper;
+        private readonly LoginInfoPage _loginInfoPage;
 
         public AutomationHelperViewModel()
         {
             ExcuteStatus = "Ready";
+            _password = string.Empty;
+            _pathBrowseHelper = new PathBrowseHelper();
+            _loginInfoPage = new LoginInfoPage();
+        }
+
+        public string ExcuteStatus
+        {
+            get => _excuteStatus;
+            set
+            {
+                _excuteStatus = value;
+                NotifyOfPropertyChange(() => ExcuteStatus);
+            }
         }
 
         public string UserName
@@ -40,24 +55,34 @@ namespace AutomationHelper.ViewModels
             }
         }
 
+        public DateTime EndDateTime
+        {
+            get => _endDateTime;
+            set
+            {
+                _endDateTime = value;
+                NotifyOfPropertyChange(() => EndDateTime);
+            }
+        }
+
         public string Password
         {
             get => _password;
         }
 
-        public void OnPasswordChanged(PasswordBox source)
+        public string ExportDataPath
         {
-            _password = source.Password;
-        }
-
-        public string ExcuteStatus
-        {
-            get => _excuteStatus;
+            get => _exportDataPath;
             set
             {
-                _excuteStatus = value;
-                NotifyOfPropertyChange(() => ExcuteStatus);
+                _exportDataPath = value;
+                NotifyOfPropertyChange(() => ExportDataPath);
             }
+        }
+
+        public void BrowseButtonClickExportDataPath()
+        {
+            ExportDataPath = _pathBrowseHelper.FolderPathBrowser(ExportDataPath);
         }
 
         public async void ExecuteButtonClick()
@@ -66,25 +91,21 @@ namespace AutomationHelper.ViewModels
 
             await RunBusinessLogics();
 
-            ExcuteStatus = "Ready";
-
+            ExcuteStatus = $"Finish at {DateTime.Now}";
         }
 
-        //todo, seperate into different class
         public async Task RunBusinessLogics()
         {
-            var taskList = new List<Task>();
-
-            var currTask = Task.Factory.StartNew(() => GetPassword());
-            taskList.Add(currTask);
-            await Task.Run(() => GetPassword());
-            await Task.Delay(5000);
+            await Task.Run(() => SearchResultViaBingDemo());
         }
 
-        //todo, seperate into different class
-        private void GetPassword()
+        private void SearchResultViaBingDemo()
         {
+            // get password triggered
             var password = Password;
+
+            var businessLogicDemo = new BusinessLogicDemo(_loginInfoPage);
+            businessLogicDemo.SearchResultViaBingDemo();
         }
 
         //todo, need to add selenium pacakge

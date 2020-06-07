@@ -17,15 +17,7 @@
         <Border Padding="10" Grid.ColumnSpan="2" Margin="0,0,0,0.5">
             <StackPanel>
 
-                <!-- ExcuteStatus -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="4*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10" FontSize="15" Text="Execute Status:"/>
-                    <TextBlock Text="{Binding ExcuteStatus}" Grid.Column="1" Margin="10" FontSize="15" />
-                </Grid>
+                
 
                 <!--UserName-->
                 <Grid>
@@ -89,6 +81,24 @@
                 <Grid>
                     <Button x:Name = "ExecuteButtonClick" Grid.Column="3"  FontSize="15" Margin="10">Extract Data</Button>
                 </Grid>
+
+                <!-- ExcuteStatus -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="10" FontSize="15" Text="Execute Status:"/>
+                    <TextBlock Text="{Binding ExcuteStatus}" Grid.Column="1" Margin="10" FontSize="15" />
+                </Grid>
+
+                <!-- LogMessage --><!--
+                <TextBlock Grid.Row="1" Margin="10 10 10 10" FontSize="15" Text="Log Messages"/>
+                <Grid>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <TextBox Height="160" Text="{Binding LogMessage}"/>
+                    </Border>
+                </Grid>-->
             </StackPanel>
         </Border>
     </Grid>
