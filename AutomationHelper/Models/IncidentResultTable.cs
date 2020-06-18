@@ -1,6 +1,9 @@
-﻿namespace AutomationHelper.Models
+﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+
+namespace AutomationHelper.Models
 {
-    public class IncidentResultTable
+    public class IncidentResultTable : IResultTable
     {
         private string _client = string.Empty;
         private string _opendBy = string.Empty;

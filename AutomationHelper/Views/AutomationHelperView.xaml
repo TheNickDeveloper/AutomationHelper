@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:vm="clr-namespace:AutomationHelper.ViewModels"
         mc:Ignorable="d"
         Title="Fail Ticket Extractor" 
-        MinHeight="320" MaxHeight="320" MinWidth="600">
+        MinHeight="400" MaxHeight="400" MinWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -37,6 +38,16 @@
                     <TextBlock Grid.Column="0" Margin="10"  FontSize="15" Text="Password:"/>
                     <PasswordBox  Grid.Column="1"  Margin="10" FontSize="15"
                                   cal:Message.Attach="[Event PasswordChanged] = [Action OnPasswordChanged($source)]" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Margin="10"  FontSize="15" Text="Ticket Options:"/>
+                    <ComboBox x:Name="TicketTypes" SelectedItem="{Binding TicketOptions}" Grid.Column="1" Margin="10" FontSize="15" FontWeight="Bold"/>
                 </Grid>
 
                 <!--StartDateAndTime-->

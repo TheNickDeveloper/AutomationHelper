@@ -1,6 +1,6 @@
 ﻿namespace AutomationHelper.Models
 {
-    public class ProblemResultTable
+    public class ProblemResultTable :IResultTable
     {
         public string Number { get; set; }
         public string Priority { get; set; }

@@ -2,12 +2,13 @@
 using System.Text;
 using System.IO;
 using System.Reflection;
+using AutomationHelper.Models;
 
 namespace AutomationHelper.Services
 {
     public class ResultExporter
     {
-        public void ExportAsCsvFile<T>(string path, string exportFileName, List<T> objList)
+        public void ExportAsCsvFile<T>(string path, string exportFileName, List<IResultTable> objList)
         {
             var sb = new StringBuilder();
             var propertiesName = typeof(T).GetProperties();
