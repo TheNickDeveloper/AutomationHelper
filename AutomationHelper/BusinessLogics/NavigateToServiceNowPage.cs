@@ -1,11 +1,12 @@
 ﻿using AutomationHelper.Models;
-using AutomationHelper.Services;
 using AutomationHelper.ViewModels;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace AutomationHelper.BusinessLogics
 {
@@ -40,23 +41,22 @@ namespace AutomationHelper.BusinessLogics
         {
             Log.Information("Navigate to service now page.");
             _driver.Navigate().GoToUrl(_targetPageUrl);
-            
+
             Log.Information("Entre user name.");
             _driver.FindElement(By.Id("i0116")).SendKeys(_viewModel.UserName);
-            
+
             Log.Information("Windows authentication.");
             _driver.FindElement(By.Id("idSIButton9")).Click();
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            
+
             Log.Information("Input password.");
             _driver.FindElement(By.Id("passwordInput")).SendKeys(_viewModel.Password);
-            
+
             Log.Information("Login button press.");
             _driver.FindElement(By.Id("submitButton")).Click();
-            
+
             Log.Information("Not saving identification.");
             _driver.FindElement(By.Id("idBtn_Back")).Click();
-            _driver.SwitchTo().Frame("gsft_main");
         }
 
         private List<IResultTable> ExtractDataFromPage()
@@ -66,9 +66,12 @@ namespace AutomationHelper.BusinessLogics
             var isHaveNextPage = true;
             var resultTable = new List<IResultTable>();
 
+            _driver.SwitchTo().Frame("gsft_main");
+
             do
             {
                 IWebElement problemTable = _driver.FindElement(By.ClassName("list2_body"));
+
                 var listTrElem = new List<IWebElement>(problemTable.FindElements(By.TagName("tr")));
 
                 foreach (var elemTr in listTrElem)
@@ -82,13 +85,13 @@ namespace AutomationHelper.BusinessLogics
                     }
                 }
 
-                var nextButton = _driver.FindElement(By.Name("vcr_next"));
-
-                if (nextButton.Enabled)
+                if (_driver.FindElement(By.Name("vcr_next")).Enabled)
                 {
                     Log.Information("Jump to next page.");
-                    nextButton.Click();
-                    _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+                    _driver.FindElement(By.Name("vcr_next")).Click();
+
+                    WebDriverWait webDriverWait = new WebDriverWait(_driver, new TimeSpan(500));
+                    Thread.Sleep(500);
                 }
                 else
                 {

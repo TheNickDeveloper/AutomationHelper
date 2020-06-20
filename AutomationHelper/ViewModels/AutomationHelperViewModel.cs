@@ -186,6 +186,18 @@ namespace AutomationHelper.ViewModels
                                 , "ProblemTicketsOverview.xlsx"
                                 , businessLogicDemo.GetDataFromWebPage());
                             break;
+
+                        // todo, Test
+                        case "Test":
+                            Log.Information($"Start getting Incidents_OpsAppLasAnz data.");
+                            businessLogicDemo = new NavigateToServiceNowPage(this
+                                , _sourceGetter.Test
+                                , new IncidentOpsAppLasAnzProcessor());
+
+                            resultExporter.ExportAsCsvFile<IncidentResultTable>(ExportDataPath
+                                , "Test.xlsx"
+                                , businessLogicDemo.GetDataFromWebPage());
+                            break;
                     }
                 }
                 catch (Exception e)

@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
-
-namespace AutomationHelper.Models
+﻿namespace AutomationHelper.Models
 {
     public class IncidentResultTable : IResultTable
     {

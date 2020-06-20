@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Windows.Documents;
 
 namespace AutomationHelper.Models
 {
@@ -13,7 +12,8 @@ namespace AutomationHelper.Models
                 return new List<string>
                 {
                     "Incidents_OpsAppLasAnz",
-                    "Problems_OpsAppLasAnz"
+                    "Problems_OpsAppLasAnz",
+                    "Test"
                 };
             }
         }
@@ -26,6 +26,11 @@ namespace AutomationHelper.Models
         public string Url_Problems_OpsAppLasAnz
         {
             get => ConfigurationManager.AppSettings["Url_Problems_OpsAppLasAnz"].ToString(); 
+        }
+
+        public string Test
+        {
+            get => ConfigurationManager.AppSettings["Test"].ToString();
         }
     }
 }

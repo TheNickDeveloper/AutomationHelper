@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AutomationHelper.Services;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit.Sdk;
 using AutomationHelper.Models;
 
