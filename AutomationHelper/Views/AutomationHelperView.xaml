@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:AutomationHelper.ViewModels"
         mc:Ignorable="d"
         Title="Fail Ticket Extractor" 
-        MinHeight="400" MaxHeight="400" MinWidth="600">
+        MinHeight="420" MaxHeight="420" MinWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
