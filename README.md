@@ -8,7 +8,7 @@ A web crawler tool which help users to catch the data table from website. Tech h
 
 ## Application UI
 
-![image](https://github.com/TheNickDeveloper/AutomationHelper/tree/master/images/AppUi.png)
+![image](https://github.com/TheNickDeveloper/AutomationHelper/blob/master/images/AppUi.png)
 
 ## How to Use
 
