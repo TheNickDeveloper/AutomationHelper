@@ -1,10 +1,9 @@
 # Automation Helper
-A web crawler tool which help users to catch the data table from website. Tech highlight: WPF Core, MVVM, Entity Framework, SQLite.
+A web crawler tool which help users to catch the data table from website. Tech highlight: WPF Core, MVVM.
 
 ## Design
 1. MVVM design pattern by using Caliburn.Micro framework.
 2. Xunit apply for unit test.
-3. EF for Sqlite.
 
 ## Application UI
 
