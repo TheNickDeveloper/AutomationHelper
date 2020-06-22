@@ -2,7 +2,6 @@
 using AutomationHelper.ViewModels;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -41,6 +40,7 @@ namespace AutomationHelper.BusinessLogics
         {
             Log.Information("Navigate to service now page.");
             _driver.Navigate().GoToUrl(_targetPageUrl);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMinutes(3);
 
             Log.Information("Entre user name.");
             _driver.FindElement(By.Id("i0116")).SendKeys(_viewModel.UserName);
@@ -90,8 +90,7 @@ namespace AutomationHelper.BusinessLogics
                     Log.Information("Jump to next page.");
                     _driver.FindElement(By.Name("vcr_next")).Click();
 
-                    WebDriverWait webDriverWait = new WebDriverWait(_driver, new TimeSpan(500));
-                    Thread.Sleep(500);
+                    Thread.Sleep(5000);
                 }
                 else
                 {

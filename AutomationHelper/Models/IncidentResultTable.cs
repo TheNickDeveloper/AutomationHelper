@@ -5,6 +5,7 @@
         private string _client = string.Empty;
         private string _opendBy = string.Empty;
         private string _assignedTo = string.Empty;
+        private string _shortDescription = string.Empty;
 
         public string Number { get; set; }
         public string Priority { get; set; }
@@ -20,7 +21,15 @@
             }
         }
 
-        public string ShortDescription { get; set; }
+        public string ShortDescription
+        {
+            get => _shortDescription;
+            set
+            {
+                value = value.Replace(',', '.');
+            }
+        }
+
         public string IncidentDueDate { get; set; }
         public string AssignTo
         {
