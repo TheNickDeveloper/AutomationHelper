@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Xunit.Sdk;
 using AutomationHelper.Models;
-using Newtonsoft.Json;
 using System.IO;
 
 namespace AutomationHelper.Services.Tests
@@ -66,35 +65,43 @@ namespace AutomationHelper.Services.Tests
         {
             var incidents = new List<IResultTable>()
             {
-                new IncidentResultTable
+                new ProblemResultTable
                 {
                     Number = "INS1",
                     Priority = "P1",
                     State = "OK",
-                    Client = "Company1",
+                    ConfigurationItem = "Cconfig1",
                     ShortDescription = "Testing1",
-                    IncidentDueDate = "DueDate1",
-                    AssignTo = "Nick",
+                    AssignedTo = "Nick",
                     AssignmentGroup = "AZN",
                     OpenedBy = "Jack",
-                    Opened = "OpenDate1"
+                    Opened = "OpenDate1",
+                    DueDate = "DueDate1",
+                    BreachFlag = "BranchFlag1",
+                    Closed = "Closed01",
+                    ClosedBy = "Mina1",
+                    ClosureCode = "ClosureCode01",
                 },
-                new IncidentResultTable
+                new ProblemResultTable
                 {
                     Number = "INS2",
                     Priority = "P2",
-                    State = "Done",
-                    Client = "Company2",
+                    State = "OK",
+                    ConfigurationItem = "Cconfig2",
                     ShortDescription = "Testing2",
-                    IncidentDueDate = "DueDate2",
-                    AssignTo = "Mina",
-                    AssignmentGroup = "AZN",
-                    OpenedBy = "Vicky",
-                    Opened = "OpenDate2"
+                    AssignedTo = "Nick2",
+                    AssignmentGroup = "AZN2",
+                    OpenedBy = "Jack2",
+                    Opened = "OpenDate2",
+                    DueDate = "DueDate2",
+                    BreachFlag = "BranchFlag2",
+                    Closed = "Closed02",
+                    ClosedBy = "Mina2",
+                    ClosureCode = "ClosureCode02",
                 }
             };
 
-            _resultExporter.ExportAsJsonFile<IncidentResultTable>(_path, _fileName, incidents);
+            _resultExporter.ExportAsJsonFile<ProblemResultTable>(_path, _fileName, incidents);
 
             var jsonFilePath = _path + @$"\{_fileName}.json";
             StreamReader r = new StreamReader(jsonFilePath);

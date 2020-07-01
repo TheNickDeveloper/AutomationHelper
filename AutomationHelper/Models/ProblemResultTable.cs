@@ -15,7 +15,7 @@
             get => _shortDescription;
             set
             {
-                value = value.Replace(',', '.');
+                _shortDescription = value.Replace(',', '.');
             }
         }
 
