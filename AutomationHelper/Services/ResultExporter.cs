@@ -38,23 +38,12 @@ namespace AutomationHelper.Services
             File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
         }
 
-        //public void ExportAsExcel<T>(string path, string exportFileName, List<T> objList)
-        //{
-        //    ExportAsCsvFile<T>(path, "tempFile", objList);
-        //    var csvResultFile = path + @"\tempFile.csv";
-        //    var app = new Excel.Application
-        //    {
-        //        DisplayAlerts = false
-        //    };
-        //    var workbook = app.Workbooks.Open(csvResultFile);
-        //    workbook.Saved = true;
-        //    var workSheet = (Excel.Worksheet)app.ActiveSheet;
-        //    workSheet.Name = exportFileName;
-        //    workbook.SaveAs(path + @$"\{exportFileName}.xlsx", XlFileFormat.xlExcel8);
-        //    workbook.Close();
-        //    File.Delete(csvResultFile);
-        //}
-
+        public void ExportAsJsonFile<T>(string path, string exportFileName, List<IResultTable> objList)
+        {
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(objList);
+            path += @$"\{exportFileName}.json";
+            File.WriteAllText(path, jsonString, Encoding.UTF8);
+        }
     }
 }
 

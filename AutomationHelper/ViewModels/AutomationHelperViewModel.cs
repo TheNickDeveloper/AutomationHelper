@@ -22,6 +22,7 @@ namespace AutomationHelper.ViewModels
         private DateTime _startTime;
         private DateTime _endTime;
         private string _ticketOptions;
+        private string _exportFormats;
         private readonly PathBrowseHelper _pathBrowseHelper;
         private readonly TicketSourceGetter _sourceGetter;
         private readonly ResultExporter _resultExporter;
@@ -81,6 +82,21 @@ namespace AutomationHelper.ViewModels
             }
         }
 
+        public List<string> ExportFileFormatTypes
+        {
+            get => _sourceGetter.ExportFileFormatTypes;
+        }
+
+        public string ExportFormats
+        {
+            get => _exportFormats;
+            set
+            {
+                _exportFormats = value;
+                NotifyOfPropertyChange(() => ExportFormats);
+            }
+        }
+
         public DateTime StartDate
         {
             get => _startDate;
@@ -121,7 +137,6 @@ namespace AutomationHelper.ViewModels
             }
         }
 
-
         public string ExportDataPath
         {
             get => _exportDataPath;
@@ -146,7 +161,8 @@ namespace AutomationHelper.ViewModels
 
         public async Task<string> RunBusinessLogics()
         {
-            return await Task.Run(() => {
+            return await Task.Run(() =>
+            {
 
                 try
                 {
@@ -171,9 +187,19 @@ namespace AutomationHelper.ViewModels
                                 , _sourceGetter.Url_Incidents_OpsAppLasAnz
                                 , new IncidentOpsAppLasAnzProcessor());
 
-                            resultExporter.ExportAsCsvFile<IncidentResultTable>(ExportDataPath
-                                , "IncidentTicketsOverview.xlsx"
+                            if (ExportFormats == "CSV")
+                            {
+                                resultExporter.ExportAsCsvFile<IncidentResultTable>(ExportDataPath
+                                , "IncidentTicketsOverview"
                                 , businessLogicDemo.GetDataFromWebPage());
+                            }
+
+                            if (ExportFormats == "JSON")
+                            {
+                                resultExporter.ExportAsJsonFile<IncidentResultTable>(ExportDataPath
+                                , "IncidentTicketsOverview"
+                                , businessLogicDemo.GetDataFromWebPage());
+                            }
                             break;
 
                         case "Problems_OpsAppLasAnz":
@@ -182,9 +208,19 @@ namespace AutomationHelper.ViewModels
                                 , _sourceGetter.Url_Problems_OpsAppLasAnz
                                 , new ProblemOpsAppLasAnzProcessor());
 
-                            resultExporter.ExportAsCsvFile<ProblemResultTable>(ExportDataPath
-                                , "ProblemTicketsOverview.xlsx"
+                            if (ExportFormats == "CSV")
+                            {
+                                resultExporter.ExportAsCsvFile<ProblemResultTable>(ExportDataPath
+                                , "ProblemTicketsOverview"
                                 , businessLogicDemo.GetDataFromWebPage());
+                            }
+
+                            if (ExportFormats == "JSON")
+                            {
+                                resultExporter.ExportAsJsonFile<ProblemResultTable>(ExportDataPath
+                                , "ProblemTicketsOverview"
+                                , businessLogicDemo.GetDataFromWebPage());
+                            }
                             break;
 
                         // todo, Test
@@ -194,9 +230,19 @@ namespace AutomationHelper.ViewModels
                                 , _sourceGetter.Test
                                 , new IncidentOpsAppLasAnzProcessor());
 
-                            resultExporter.ExportAsCsvFile<IncidentResultTable>(ExportDataPath
-                                , "Test.xlsx"
+                            if (ExportFormats == "CSV")
+                            {
+                                resultExporter.ExportAsCsvFile<IncidentResultTable>(ExportDataPath
+                                , "Test"
                                 , businessLogicDemo.GetDataFromWebPage());
+                            }
+
+                            if (ExportFormats == "JSON")
+                            {
+                                resultExporter.ExportAsJsonFile<IncidentResultTable>(ExportDataPath
+                               , "Test"
+                               , businessLogicDemo.GetDataFromWebPage());
+                            }
                             break;
                     }
                 }

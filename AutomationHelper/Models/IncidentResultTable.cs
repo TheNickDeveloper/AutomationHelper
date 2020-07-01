@@ -27,6 +27,7 @@
             set
             {
                 value = value.Replace(',', '.');
+                _shortDescription = value;
             }
         }
 

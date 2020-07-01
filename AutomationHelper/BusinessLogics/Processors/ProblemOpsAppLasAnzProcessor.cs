@@ -23,7 +23,7 @@ namespace AutomationHelper.BusinessLogics
                 if (i == 2) newRow.Number = listTdElem[i].Text;
                 if (i == 3) newRow.Priority = listTdElem[i].Text;
                 if (i == 4) newRow.ConfigurationItem = listTdElem[i].Text;
-                if (i == 5) newRow.ShortDecription = listTdElem[i].Text;
+                if (i == 5) newRow.ShortDescription = listTdElem[i].Text;
                 if (i == 6) newRow.AssignedTo = listTdElem[i].Text;
                 if (i == 7) newRow.AssignmentGroup = listTdElem[i].Text;
                 if (i == 8) newRow.Opened = listTdElem[i].Text;

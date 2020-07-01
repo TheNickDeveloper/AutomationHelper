@@ -10,7 +10,7 @@
         public string Number { get; set; }
         public string Priority { get; set; }
         public string ConfigurationItem { get; set; }
-        public string ShortDecription
+        public string ShortDescription
         {
             get => _shortDescription;
             set

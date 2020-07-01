@@ -18,6 +18,18 @@ namespace AutomationHelper.Models
             }
         }
 
+        public List<string> ExportFileFormatTypes
+        {
+            get
+            {
+                return new List<string>
+                {
+                    "CSV",
+                    "JSON"
+                };
+            }
+        }
+
         public string Url_Incidents_OpsAppLasAnz
         {
             get => ConfigurationManager.AppSettings["Url_Incidents_OpsAppLasAnz"].ToString();
